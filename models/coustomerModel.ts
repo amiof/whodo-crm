@@ -8,9 +8,15 @@ const coustomerSchema = new mongoose.Schema(
     phone: { type: String },
     address: { type: String },
     postalCode: { type: Number },
-    product: { type: Array, default: [] },
+    products: { type: Array, default: [] },
   },
   { timestamps: true }
 );
-const costumerModel = mongoose.models.costumerModel || mongoose.model("coustomer", coustomerSchema);
-export default costumerModel;
+let costumerModel: any;
+if (mongoose.models.costumerModel) {
+  costumerModel = mongoose.models.costumerModel;
+} else {
+  costumerModel = mongoose.model("coustomer", coustomerSchema);
+}
+
+export { costumerModel };

@@ -1,4 +1,4 @@
-import costumerModel from "@/models/coustomerModel";
+import { costumerModel } from "@/models/coustomerModel";
 import { connectdb } from "@/utils/connectDb";
 import { log } from "console";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -13,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (req.method == "POST") {
       const data = req.body;
       log(req.body);
+
       if (data.name && data.email && data.lastName) {
         const user = await costumerModel.create(data);
         log(user);
